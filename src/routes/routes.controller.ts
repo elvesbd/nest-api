@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 
 import { RoutesService } from './routes.service';
@@ -28,16 +29,17 @@ export class RoutesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.routesService.findOne(+id);
+    return this.routesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRouteDto: UpdateRouteDto) {
-    return this.routesService.update(+id, updateRouteDto);
+    return this.routesService.update(id, updateRouteDto);
   }
 
+  @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.routesService.remove(+id);
+    return this.routesService.remove(id);
   }
 }

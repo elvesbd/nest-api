@@ -1,0 +1,27 @@
+POST http://localhost:3000/routes
+Content-Type: application/json
+
+{
+  "title": "segunda rota",
+  "startPosition": {"lat": 2, "lng": 2},
+  "endPosition": {"lat": 3, "lng": 3}
+}
+
+###
+GET http://localhost:3000/routes
+
+###
+GET http://localhost:3000/routes/60edbaa22b44e801045aade6
+
+###
+PATCH  http://localhost:3000/routes/60edbaa22b44e801045aade6
+Content-Type: application/json
+
+{
+  "title": "segunda rota alterada",
+  "startPosition": {"lat": 222, "lng": 222},
+  "endPosition": {"lat": 333, "lng": 333}
+}
+
+###
+DELETE http://localhost:3000/routes/60edbaa22b44e801045aade6
