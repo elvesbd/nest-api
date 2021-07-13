@@ -12,13 +12,17 @@ import {
 import { RoutesService } from './routes.service';
 import { CreateRouteDto } from './dto/create-route.dto';
 import { UpdateRouteDto } from './dto/update-route.dto';
+import { ValidationPipe } from '@nestjs/common';
 
 @Controller('routes')
 export class RoutesController {
   constructor(private readonly routesService: RoutesService) {}
 
   @Post()
-  create(@Body() createRouteDto: CreateRouteDto) {
+  create(
+    @Body(new ValidationPipe({ errorHttpStatusCode: 422 }))
+    createRouteDto: CreateRouteDto,
+  ) {
     return this.routesService.create(createRouteDto);
   }
 
@@ -33,7 +37,11 @@ export class RoutesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRouteDto: UpdateRouteDto) {
+  update(
+    @Param('id') id: string,
+    @Body(new ValidationPipe({ errorHttpStatusCode: 400 }))
+    updateRouteDto: UpdateRouteDto,
+  ) {
     return this.routesService.update(id, updateRouteDto);
   }
 
